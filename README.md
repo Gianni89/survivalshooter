@@ -2,7 +2,7 @@
 
 ##Setting Up
 
-In this repo you will find the Survival Shooter folder which contains a zip file with the game executable. Unzipping and running the file will launch the game.
+In this repo you will find the [Survival Shooter folder](SurvivalShooter) which contains a zip file with the game executable. Unzipping and running the file will launch the game.
 
 ##Introduction
 
@@ -14,7 +14,7 @@ The tutorial ends with player character able to run around and shoot, with three
 
 Currently the player loses health when enemies collide with the player character and there is no way to recover. We will add med packs to the level that will spawn at a set interval, at one of a set of locations.
 
-In [playerHealth.cs](link) a HealPlayer method was added:
+In [playerHealth.cs](Scripts/Player/PlayerHealth.cs) a HealPlayer method was added:
 
 ```c#
 public void HealPlayer(int amount)
@@ -32,10 +32,9 @@ public void HealPlayer(int amount)
     }
 ```
 
-and a simple medpack object was made with a medpack [script](link):
+and a simple medpack object was made with a medpack [script](Scripts/Items/MedPack.cs):
 
 ```c#
-{
 	public class MedPack : MonoBehaviour {
 
 		public int amountToHeal;
@@ -57,10 +56,9 @@ and a simple medpack object was made with a medpack [script](link):
 			}
 		}
 	}
-}
 ```
 
-To spawn the medpack a generic [Item Manager](link) was created, that could also spawn in other items we might create. The manager makes sure that only one item per type is in the map:
+To spawn the medpack a generic [Item Manager](Scripts/Managers/ItemManager.cs) was created, that could also spawn in other items we might create. The manager makes sure that only one item per type is in the map:
 
 ```c#
 public class ItemManager : MonoBehaviour 
