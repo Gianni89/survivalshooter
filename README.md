@@ -121,7 +121,7 @@ public void DoSpecialAttack()
 		}
 ```
 
-The behaviour of the orbs was controlled by the [orb damage script](Scripts/Objects/OrbDamage.cs) which moved the orbs forward, destroying them and causing damage if they hit the player, and destroying them after a set time.
+The behaviour of the orbs was controlled by the [orb damage script](Scripts/objects/OrbDamage.cs) which moved the orbs forward, destroying them and causing damage if they hit the player, and destroying them after a set time.
 
 A rotation was also added to the boss during this attack to achieve the spiral of orbs.
 
@@ -129,7 +129,7 @@ A rotation was also added to the boss during this attack to achieve the spiral o
 
 ###Making the Toxic Trail
 
-For the toxic trail that the boss would leave behind a spawn point was added slightly behind the boss and a script added that would spawn the patches per set period of time. We wanted the patches to deal damage to the player if they are standing in them, and this behaviour was handled by the [splat damage script](Scripts/Objects/SplatDamage.cs)
+For the toxic trail that the boss would leave behind a spawn point was added slightly behind the boss and a script added that would spawn the patches per set period of time. We wanted the patches to deal damage to the player if they are standing in them, and this behaviour was handled by the [splat damage script](Scripts/objects/SplatDamage.cs)
 
 ![](https://raw.githubusercontent.com/Gianni89/survivalshooter/master/gifs/splat.gif)
 
@@ -142,6 +142,6 @@ The shield behviour was made in much the same way as the double damage buff, and
 ##Additions
 
 - Tweaks to spawn times, score value of enemies and enemy health to set difficulty
-- Update Slider [script](Scripts/Sanagers/UpdateSlider.cs) was created to dynamically change colour of slider based on health that will work for the player and boss. Health slider for bosses were added
+- Update Slider [script](Scripts/Managers/UpdateSlider.cs) was created to dynamically change colour of slider based on health that will work for the player and boss. Health slider for bosses were added
 - Some environmental props moved around to prevent boss enemies becoming stuck
 - Added an introduction splash screen that triggers when players move for the first time handled by an [intro script](Scripts/Managers/Intro.cs)
