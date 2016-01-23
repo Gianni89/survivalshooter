@@ -96,7 +96,7 @@ These work quite nicely, the player can now kite the mobs around and pick up hea
 
 For the damage buff, we want to be able to set how long the buff will last for after the player has collected it, and give some visual feedback to the player that the buff is either active or ended. This was done in the Double Damage buff [script:](Scripts/Player/DoubleDamageBuff.cs)
 
-!(https://github.com/Gianni89/survivalshooter/blob/master/gifs/doubledamage.gif)
+![](https://raw.githubusercontent.com/Gianni89/survivalshooter/master/gifs/DoubleDamage.gif)
 
 The player can now run around, find buffs and medpacks and survive for quite a while. However, the game can become quite stale, so lets add a boss encounter that adds a bit more challenge for the player. The boss will chase the player leaving behind a toxic trail that will damage the player if they stand in it. It will also periodically teleport to the centre of the map and perform a special attack, which shoots out dangerous particles in a spiral.
 
@@ -122,8 +122,12 @@ public void DoSpecialAttack()
 
 [orb damage script](Scripts/Objects/OrbDamage)
 
-!(https://github.com/Gianni89/survivalshooter/blob/master/gifs/orb.gif)
+![](https://raw.githubusercontent.com/Gianni89/survivalshooter/master/gifs/orb.gif)
 
 ###Making the Toxic Trail
 
-!(https://github.com/Gianni89/survivalshooter/blob/master/gifs/shield.gif)
+![](https://raw.githubusercontent.com/Gianni89/survivalshooter/master/gifs/splat.gif)
+
+###Making the Shield
+
+![](https://raw.githubusercontent.com/Gianni89/survivalshooter/master/gifs/shield.gif)
