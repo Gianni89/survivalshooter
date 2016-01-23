@@ -88,7 +88,7 @@ public class ItemManager : MonoBehaviour
 	}
 ```
 
-!(https://github.com/Gianni89/survivalshooter/blob/master/gifs/medpack.gif)
+![](https://raw.githubusercontent.com/Gianni89/survivalshooter/master/gifs/Medpack.gif)
 
 These work quite nicely, the player can now kite the mobs around and pick up health when needed. The mobs will still tend to pile up and overwhelm the player with time however, so it might be nice to have some buffs that spawn that can help the player out. As a test we'll add in a "double damage" buff that lasts for a short period of time, changes the gun's color to red and increases the player's speed.
 
