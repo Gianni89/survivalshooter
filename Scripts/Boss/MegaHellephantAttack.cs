@@ -18,8 +18,6 @@ namespace CompleteProject
 		MegaHellephantHealth megaHellephantHealth;
 		bool playerInRange;
 		float timer; 
-		Vector3 specialAttackSpawnPosition;
-		GameObject[] specialAttackParticles;
 
 		void Awake ()
 		{

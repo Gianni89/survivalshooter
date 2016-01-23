@@ -2,11 +2,11 @@
 
 ##Setting Up
 
-In this repo you will find the [Survival Shooter folder](SurvivalShooter) which contains a zip file with the game executable. To run the game you will need to [**download the repo as a zip**](https://github.com/Gianni89/survivalshooter/archive/master.zip), navigate to the Surivival Shooter folder and unzip the Survival Shooter Game zip file, which contains the game files and executable.
+In this repo you will find the [Survival Shooter folder](SurvivalShooter) which contains a zip file with the game executable. To run the game you will need to [**download the repo as a zip**](https://github.com/Gianni89/survivalshooter/archive/master.zip), navigate to the Survival Shooter folder and unzip the Survival Shooter Game zip file, which contains the game files and executable.
 
 ##Introduction
 
-For this project I decided to use one of the Unity tutorials as the base, and picked the [survival shooter tutorial](https://www.assetstore.unity3d.com/en/#!/content/40756). I completed the tutorial building the project from scratch to refresh using certain concepts and started adding my own contributions from there.
+For this project I decided to use one of the Unity tutorials as the base, and picked the [survival shooter tutorial](https://www.assetstore.unity3d.com/en/#!/content/40756). I completed the tutorial building the project from scratch to refresh my use of certain concepts and started adding my own contributions from there.
 
 The tutorial ends with player character able to run around and shoot, with three types of enemies spawning repeatedly into the game.
 
@@ -53,6 +53,7 @@ and a simple medpack object was made with a medpack [script](Scripts/Items/MedPa
 			if (other.gameObject.CompareTag ("Player"))
 			{
 				playerhealth.HealPlayer(amountToHeal);
+				gameObject.SetActive(false);
 			}
 		}
 	}
@@ -102,11 +103,11 @@ The player can now run around, find buffs and medpacks and survive for quite a w
 
 ##Adding a Boss Encounter
 
+For the boss encounter we needed a [boss movement script](Scripts/Boss/MegaHellephantMovement.cs) to change the behavior of the boss depending on which attack type it is performing. During the chase phase, the boss should navigate towards the player, and during the special attack phase, should teleport to the centre of the map and perform the special attack at repeated intervals for its duration. 
+
 ###Making the Special Attack
 
-[boss movement script](Scripts/Boss/MegaHellephantMovement.cs)
-
-[boss attack script](Scripts/Boss/MegaHellephantAttack.cs)
+For the special attack a simple method was added to the [boss attack script](Scripts/Boss/MegaHellephantAttack.cs) which looked at an array of spawn points and spawn an orb at each point:
 
 ```c#
 public void DoSpecialAttack()
@@ -120,14 +121,26 @@ public void DoSpecialAttack()
 		}
 ```
 
-[orb damage script](Scripts/Objects/OrbDamage)
+The behaviour of the orbs was controlled by the [orb damage script](Scripts/Objects/OrbDamage.cs) which moved the orbs forward, destroying them and causing damage if they hit the player, and destroying them after a set time.
+
+A rotation was also added to the boss during this attack to achieve the spiral of orbs.
 
 ![](https://raw.githubusercontent.com/Gianni89/survivalshooter/master/gifs/orb.gif)
 
 ###Making the Toxic Trail
 
+For the toxic trail that the boss would leave behind a spawn point was added slightly behind the boss and a script added that would spawn the patches per set period of time. We wanted the patches to deal damage to the player if they are standing in them, and this behaviour was handled by the [splat damage script](scripts/objects/splatdamage.cs)
+
 ![](https://raw.githubusercontent.com/Gianni89/survivalshooter/master/gifs/splat.gif)
 
 ###Making the Shield
 
+The shield behviour was made in much the same way as the double damage buff, and was handled by the [shield buff script](scripts/player/shieldbuff.cs). Some physics interactions were changed such that enemies bumped into the shield but environmental pieces did not.
+
 ![](https://raw.githubusercontent.com/Gianni89/survivalshooter/master/gifs/shield.gif)
+
+##Additions
+
+- Update Slider [script](scripts/managers/updateslider.cs) was created to dynamically change colour of slider based on health that will work for the player and boss
+- Some environmental props moved around to prevent boss enemies becoming stuck
+- Added an introduction splash screen that triggers when players move for the first time handled by an [intro script](scripts/managers/intro.cs)
