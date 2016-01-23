@@ -25,10 +25,12 @@ public class OrbDamage : MonoBehaviour {
 
 	void Update() 
 		{
-			if(timerRunning){
-			timer += Time.deltaTime;
+			if(timerRunning)
+			{
+				timer += Time.deltaTime;
 
-				if(timer > lifeTime){
+				if(timer > lifeTime)
+				{
 					Destroy(gameObject);
 					timerRunning = false;
 				}
