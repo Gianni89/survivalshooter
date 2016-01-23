@@ -88,109 +88,42 @@ public class ItemManager : MonoBehaviour
 	}
 ```
 
+!(https://github.com/Gianni89/survivalshooter/blob/master/gifs/medpack.gif)
+
 These work quite nicely, the player can now kite the mobs around and pick up health when needed. The mobs will still tend to pile up and overwhelm the player with time however, so it might be nice to have some buffs that spawn that can help the player out. As a test we'll add in a "double damage" buff that lasts for a short period of time, changes the gun's color to red and increases the player's speed.
 
 ##Adding Double Damage Buff
 
 For the damage buff, we want to be able to set how long the buff will last for after the player has collected it, and give some visual feedback to the player that the buff is either active or ended. This was done in the Double Damage buff [script:](Scripts/Player/DoubleDamageBuff.cs)
 
-```c#
-public class DoubleDamageBuff : MonoBehaviour {
-
-		public float buffDuration;
-		public GameObject player;
-		public GameObject gunBarrellEnd;
-		public Material buffMaterial;
-
-		PlayerShooting playerShooting;
-		PlayerMovement playerMovement;
-
-		Light gunColor;
-		Color startLightColor;
-
-		LineRenderer lineRendererMaterial;
-		Material startLineRendererMaterial;
-
-		ParticleSystem particleSystem;
-		Color particleSystemStartColor;
-
-		float timer;
-		bool playerBuffed;
-
-		void Awake()
-		{
-			playerShooting = gunBarrellEnd.GetComponent<PlayerShooting> ();
-			playerMovement = player.GetComponent<PlayerMovement> ();
-
-			gunColor = gunBarrellEnd.GetComponent<Light> ();
-			startLightColor = gunColor.color;
-
-			lineRendererMaterial = gunBarrellEnd.GetComponent<LineRenderer> ();
-			startLineRendererMaterial = lineRendererMaterial.material;
-
-			particleSystem = gunBarrellEnd.GetComponent<ParticleSystem> ();
-			particleSystemStartColor = particleSystem.startColor;
-		}
-
-		void Update () 
-		{
-			if (playerBuffed) 
-			{
-				timer -= Time.deltaTime;
-				if ( timer <= 0)
-				{
-					playerBuffed = false;
-					timer = buffDuration;
-					BuffPlayer();
-				}
-			}
-		}
-
-
-		void BuffPlayer()
-		{
-			if (playerBuffed) 
-			{
-				playerShooting.damagePerShot += playerShooting.damagePerShot;
-				playerMovement.speed += 5f;
-				gunColor.color = new Color(1,0,0,0.3f);
-				lineRendererMaterial.material = buffMaterial;
-				particleSystem.startColor = new Color(1,0,0);
-			}
-			else 
-			{
-				playerShooting.damagePerShot = playerShooting.damagePerShot / 2;
-				playerMovement.speed -= 5f;
-				gunColor.color = startLightColor;
-				lineRendererMaterial.material = startLineRendererMaterial;
-				particleSystem.startColor = particleSystemStartColor;
-			}
-		}
-
-
-		void OnTriggerEnter(Collider other)
-		{
-			if (other.gameObject.tag == "DoubleDamage") 
-			{
-				if (!playerBuffed) 
-				{
-					timer = buffDuration;
-					playerBuffed = true;
-					BuffPlayer();
-				}
-				else 
-				{
-					timer += buffDuration;
-				}
-
-				other.gameObject.SetActive(false);
-			}
-		}
-	}
-```
+!(https://github.com/Gianni89/survivalshooter/blob/master/gifs/doubledamage.gif)
 
 The player can now run around, find buffs and medpacks and survive for quite a while. However, the game can become quite stale, so lets add a boss encounter that adds a bit more challenge for the player. The boss will chase the player leaving behind a toxic trail that will damage the player if they stand in it. It will also periodically teleport to the centre of the map and perform a special attack, which shoots out dangerous particles in a spiral.
 
 ##Adding a Boss Encounter
 
+###Making the Special Attack
 
+[boss movement script](Scripts/Boss/MegaHellephantMovement.cs)
+
+[boss attack script](Scripts/Boss/MegaHellephantAttack.cs)
+
+```c#
+public void DoSpecialAttack()
+		{
+			doingSpecial = true;
+			for (int i = 0; i < particleSpawnPoint.Length; i++) 
+			{
+				Transform particleTransform = particleSpawnPoint [i].GetComponent<Transform> ();
+				Instantiate (specialAttackParticle, particleTransform.position, particleTransform.rotation);
+			}
+		}
+```
+
+[orb damage script](Scripts/Objects/OrbDamage)
+
+!(https://github.com/Gianni89/survivalshooter/blob/master/gifs/orb.gif)
+
+###Making the Toxic Trail
+
+!(https://github.com/Gianni89/survivalshooter/blob/master/gifs/shield.gif)
