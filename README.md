@@ -2,7 +2,7 @@
 
 ##Setting Up
 
-In this repo you will find the [Survival Shooter folder](SurvivalShooter) which contains a zip file with the game executable. To run the game you will need to [**download the repo as a zip**](https://github.com/Gianni89/survivalshooter/archive/master.zip), navigate to the Survival Shooter folder and unzip the Survival Shooter Game zip file, which contains the game files and executable.
+To run the game you will need to [**click here**](https://github.com/Gianni89/survivalshooter/archive/master.zip) to download the repo. Unzip the file and navigate to the SurvivalShooter folder which contains the Survival Shooter Game zip file. Unzip this file to find the the game files and executable, the game files and executable must be in the same folder for the game to run.
 
 ##Introduction
 
@@ -129,19 +129,19 @@ A rotation was also added to the boss during this attack to achieve the spiral o
 
 ###Making the Toxic Trail
 
-For the toxic trail that the boss would leave behind a spawn point was added slightly behind the boss and a script added that would spawn the patches per set period of time. We wanted the patches to deal damage to the player if they are standing in them, and this behaviour was handled by the [splat damage script](scripts/objects/splatdamage.cs)
+For the toxic trail that the boss would leave behind a spawn point was added slightly behind the boss and a script added that would spawn the patches per set period of time. We wanted the patches to deal damage to the player if they are standing in them, and this behaviour was handled by the [splat damage script](Scripts/Objects/SplatDamage.cs)
 
 ![](https://raw.githubusercontent.com/Gianni89/survivalshooter/master/gifs/splat.gif)
 
 ###Making the Shield
 
-The shield behviour was made in much the same way as the double damage buff, and was handled by the [shield buff script](scripts/player/shieldbuff.cs). Some physics interactions were changed such that enemies bumped into the shield but environmental pieces did not.
+The shield behviour was made in much the same way as the double damage buff, and was handled by the [shield buff script](Scripts/Player/ShieldBuff.cs). Some physics interactions were changed such that enemies bumped into the shield but environmental pieces did not.
 
 ![](https://raw.githubusercontent.com/Gianni89/survivalshooter/master/gifs/shield.gif)
 
 ##Additions
 
 - Tweaks to spawn times, score value of enemies and enemy health to set difficulty
-- Update Slider [script](scripts/managers/updateslider.cs) was created to dynamically change colour of slider based on health that will work for the player and boss. Health slider for bosses were added
+- Update Slider [script](Scripts/Sanagers/UpdateSlider.cs) was created to dynamically change colour of slider based on health that will work for the player and boss. Health slider for bosses were added
 - Some environmental props moved around to prevent boss enemies becoming stuck
-- Added an introduction splash screen that triggers when players move for the first time handled by an [intro script](scripts/managers/intro.cs)
+- Added an introduction splash screen that triggers when players move for the first time handled by an [intro script](Scripts/Managers/Intro.cs)
