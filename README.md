@@ -141,6 +141,7 @@ The shield behviour was made in much the same way as the double damage buff, and
 
 ##Additions
 
-- Update Slider [script](scripts/managers/updateslider.cs) was created to dynamically change colour of slider based on health that will work for the player and boss
+- Tweaks to spawn times, score value of enemies and enemy health to set difficulty
+- Update Slider [script](scripts/managers/updateslider.cs) was created to dynamically change colour of slider based on health that will work for the player and boss. Health slider for bosses were added
 - Some environmental props moved around to prevent boss enemies becoming stuck
 - Added an introduction splash screen that triggers when players move for the first time handled by an [intro script](scripts/managers/intro.cs)
