@@ -6,14 +6,31 @@ namespace CompleteProject
 public class SplatSpawner : MonoBehaviour {
 
 	public GameObject splat;
+	public GameObject boss;
 
-	void Start()
+	float timer = 0f;
+	float timeBetweenSpawns = 1f;
+
+	MegaHellephantAttack specialAttack;
+
+		void Awake()
 		{
-			InvokeRepeating ("SpawnSplat", 1f, 1f);
+			specialAttack = boss.GetComponent<MegaHellephantAttack> ();
+		}
+
+		void Update()
+		{
+			timer += Time.deltaTime;
+
+			if (timer > timeBetweenSpawns && !specialAttack.doingSpecial) 
+			{
+				SpawnSplat();
+			}
 		}
 
 		void SpawnSplat()
 		{
+			timer = 0f;
 			Instantiate (splat, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation);
 		}
 

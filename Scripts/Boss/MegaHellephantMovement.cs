@@ -13,10 +13,9 @@ namespace CompleteProject
 
 		float chaseTimer = 0f;
 		float chaseDuration = 15f;
-
-		public float specialTimer = 0f;
-		public float specialDuration = 15f;
-		public float numberOfSpecialAttacks = 60f;
+		float specialTimer = 0f;
+		float specialDuration = 15f;
+		float numberOfSpecialAttacks = 60f;
 
 
 		bool shouldSpecialAttack = false;
@@ -33,33 +32,40 @@ namespace CompleteProject
 		
 		void Update ()
 		{
-			switch (shouldSpecialAttack)
+			if (shouldSpecialAttack) 
 			{
+				DoSpecial();
+			}
+			else 
+			{
+				DoChase();
+			}
+		}
+
+		void DoSpecial()
+		{
+			specialTimer += Time.deltaTime; 
+		
+			if (specialTimer > specialDuration)
+			{
+				specialTimer = 0f;
+				chaseTimer = 0f;
+				shouldSpecialAttack = false;
+			}
+		}
+
+		void DoChase()
+		{
+			chaseTimer += Time.deltaTime;
 			
-			case true:
-				specialTimer += Time.deltaTime; 
-
-				if (specialTimer > specialDuration)
-				{
-					specialTimer = 0f;
-					chaseTimer = 0f;
-					shouldSpecialAttack = false;
-				}
-				break;
-
-			case false:
-				chaseTimer += Time.deltaTime;
-				
-				if (chaseTimer < chaseDuration) {
-					ChasePlayer ();
-				} 
-				else 
-				{
-					nav.enabled = false;
-					shouldSpecialAttack = true;
-					StartCoroutine(SpecialAttack());
-				}
-				break;
+			if (chaseTimer < chaseDuration) {
+				ChasePlayer ();
+			} 
+			else 
+			{
+				nav.enabled = false;
+				shouldSpecialAttack = true;
+				StartCoroutine(SpecialAttack());
 			}
 		}
 

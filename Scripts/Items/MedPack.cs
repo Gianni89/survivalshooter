@@ -5,7 +5,7 @@ namespace CompleteProject
 {
 	public class MedPack : MonoBehaviour {
 
-		public int amountToHeal;
+		int amountToHeal = 40;
 
 		GameObject player;
 		PlayerHealth playerhealth;

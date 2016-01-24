@@ -2,7 +2,7 @@
 
 ##Setting Up
 
-To run the game you will need to [**click here**](https://github.com/Gianni89/survivalshooter/archive/master.zip) to download the repo. Unzip the file and navigate to the SurvivalShooter folder which contains the Survival Shooter Game zip file. Unzip this file to find the the game files and executable, the game files and executable must be in the same folder for the game to run.
+To run the game you will need to [**click here**](https://www.dropbox.com/s/u1bzknrni8diyd5/Survival%20Shooter.zip?dl=0) to download the zip file which contains the game data and executable. Unzip the file and launch the executable to play the game.
 
 ##Introduction
 
@@ -36,8 +36,8 @@ and a simple medpack object was made with a medpack [script](Scripts/Items/MedPa
 
 ```c#
 	public class MedPack : MonoBehaviour {
-
-		public int amountToHeal;
+		
+		int amountToHeal = 40;
 
 		GameObject player;
 		PlayerHealth playerhealth;
@@ -62,29 +62,39 @@ and a simple medpack object was made with a medpack [script](Scripts/Items/MedPa
 To spawn the medpack a generic [Item Manager](Scripts/Managers/ItemManager.cs) was created, that could also spawn in other items we might create. The manager makes sure that only one item per type is in the map:
 
 ```c#
-public class ItemManager : MonoBehaviour 
+	public class ItemManager : MonoBehaviour 
 	{
 		public PlayerHealth playerHealth;
 		public GameObject item;
-		public float spawnTime = 20f;
 		public Transform[] spawnPoints;
+		public float spawnTime;
 
+		float timer = 0f;
 
-		void Start ()
+		void Update ()
 		{
-			InvokeRepeating ("Spawn", spawnTime, spawnTime);
+			if (timer < spawnTime && GameObject.FindGameObjectWithTag (item.tag) == null) 
+			{
+				timer += Time.deltaTime;
+			} 
+			else 
+			{
+				Spawn();
+			}
 		}
 
 		void Spawn () 
 		{
-			if(playerHealth.currentHealth <= 0 || GameObject.FindGameObjectWithTag (item.tag) != null)
+			if (playerHealth.currentHealth <= 0 || GameObject.FindGameObjectWithTag (item.tag) != null) 
 			{
 				return;
-			}
+			} 
 
 			int spawnPointIndex = Random.Range (0, spawnPoints.Length);
 
 			Instantiate (item, spawnPoints [spawnPointIndex].position, spawnPoints [spawnPointIndex].rotation);
+
+			timer = 0f;
 		} 
 	}
 ```
@@ -121,7 +131,7 @@ public void DoSpecialAttack()
 		}
 ```
 
-The behaviour of the orbs was controlled by the [orb damage script](Scripts/objects/OrbDamage.cs) which moved the orbs forward, destroying them and causing damage if they hit the player, and destroying them after a set time.
+The behaviour of the orbs was controlled by the [orb damage script](Scripts/Objects/OrbDamage.cs) which moved the orbs forward, destroying them and causing damage if they hit the player, and destroying them after a set time.
 
 A rotation was also added to the boss during this attack to achieve the spiral of orbs.
 
@@ -129,7 +139,7 @@ A rotation was also added to the boss during this attack to achieve the spiral o
 
 ###Making the Toxic Trail
 
-For the toxic trail that the boss would leave behind a spawn point was added slightly behind the boss and a script added that would spawn the patches per set period of time. We wanted the patches to deal damage to the player if they are standing in them, and this behaviour was handled by the [splat damage script](Scripts/objects/SplatDamage.cs)
+For the toxic trail that the boss would leave behind a spawn point was added slightly behind the boss and a script added that would spawn the patches per set period of time. We wanted the patches to deal damage to the player if they are standing in them, and this behaviour was handled by the [splat damage script](Scripts/Objects/SplatDamage.cs)
 
 ![](https://raw.githubusercontent.com/Gianni89/survivalshooter/master/gifs/splat.gif)
 

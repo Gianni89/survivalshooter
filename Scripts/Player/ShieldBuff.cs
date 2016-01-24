@@ -5,13 +5,13 @@ namespace CompleteProject
 {
 	public class ShieldBuff : MonoBehaviour {
 		
-		public float buffDuration;
 		public GameObject player;
 		public GameObject shield;
 
 		public bool playerBuffed;
 
 		float timer;
+		float buffDuration = 10f;
 		
 		void Update () 
 		{

@@ -5,12 +5,13 @@ namespace CompleteProject
 {
 	public class MegaHellephantAttack : MonoBehaviour
 	{
-		public float timeBetweenAttacks = 0.5f;     
-		public int attackDamage = 20; 
 		public GameObject specialAttackParticle;
 		public GameObject[] particleSpawnPoint;
 
 		public bool doingSpecial = false;
+
+		float timeBetweenAttacks = 0.5f;     
+		int attackDamage = 20; 
 
 		Animator anim;                              
 		GameObject player;                          
@@ -18,6 +19,8 @@ namespace CompleteProject
 		MegaHellephantHealth megaHellephantHealth;
 		bool playerInRange;
 		float timer; 
+		Vector3 specialAttackSpawnPosition;
+		GameObject[] specialAttackParticles;
 
 		void Awake ()
 		{

@@ -5,7 +5,6 @@ namespace CompleteProject
 {
 public class DoubleDamageBuff : MonoBehaviour {
 
-		public float buffDuration;
 		public GameObject player;
 		public GameObject gunBarrellEnd;
 		public Material buffMaterial;
@@ -23,6 +22,7 @@ public class DoubleDamageBuff : MonoBehaviour {
 		Color particleSystemStartColor;
 
 		float timer;
+		float buffDuration = 10f;
 		bool playerBuffed;
 
 		void Awake()
