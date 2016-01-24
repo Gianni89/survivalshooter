@@ -17,31 +17,32 @@ public class OrbDamage : MonoBehaviour {
 	bool timerRunning = true;
 
 
-	void Awake () {
+	void Awake () 
+	{
 		player = GameObject.FindGameObjectWithTag ("Player");
 		shield = player.transform.Find ("Shield");
 		playerHealth = player.GetComponent<PlayerHealth> ();
 	}
 
 	void Update() 
+	{
+		if(timerRunning)
 		{
-			if(timerRunning)
+			timer += Time.deltaTime;
+
+			if(timer > lifeTime)
 			{
-				timer += Time.deltaTime;
-
-				if(timer > lifeTime)
-				{
-					Destroy(gameObject);
+				Destroy(gameObject);
 					timerRunning = false;
-				}
-			} 
-		}
-
-		void FixedUpdate()
-		{
-			Rigidbody rb = gameObject.GetComponent<Rigidbody> ();
-			rb.MovePosition (rb.position + rb.transform.forward * particleSpeed * Time.deltaTime);
+			}
 		} 
+	}
+
+	void FixedUpdate()
+	{
+		Rigidbody rb = gameObject.GetComponent<Rigidbody> ();
+		rb.MovePosition (rb.position + rb.transform.forward * particleSpeed * Time.deltaTime);
+	} 
 
 	void OnTriggerEnter (Collider other)
 	{

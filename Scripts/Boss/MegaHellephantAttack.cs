@@ -11,14 +11,15 @@ namespace CompleteProject
 		public bool doingSpecial = false;
 
 		float timeBetweenAttacks = 0.5f;     
-		int attackDamage = 20; 
+		int attackDamage = 20;
+		 
+		bool playerInRange;
+		float timer; 
 
 		Animator anim;                              
 		GameObject player;                          
 		PlayerHealth playerHealth;                 
 		MegaHellephantHealth megaHellephantHealth;
-		bool playerInRange;
-		float timer; 
 		Vector3 specialAttackSpawnPosition;
 		GameObject[] specialAttackParticles;
 
