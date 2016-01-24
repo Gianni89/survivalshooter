@@ -62,7 +62,7 @@ public class OrbDamage : MonoBehaviour {
 		if (playerHealth.currentHealth > 0) 
 		{
 			playerHealth.TakeDamage(damagePerHit);			
-				Destroy(gameObject);
+			Destroy(gameObject);
 		}
 	}
 }
