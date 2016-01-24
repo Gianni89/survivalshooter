@@ -14,7 +14,8 @@ namespace CompleteProject
 		bool shouldDamage = false;
 		float timer;
 		
-		void Awake () {
+		void Awake () 
+		{
 			player = GameObject.FindGameObjectWithTag ("Player");
 			playerHealth = player.GetComponent<PlayerHealth> ();
 		}

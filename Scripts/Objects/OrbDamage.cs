@@ -33,7 +33,7 @@ public class OrbDamage : MonoBehaviour {
 			if(timer > lifeTime)
 			{
 				Destroy(gameObject);
-					timerRunning = false;
+				timerRunning = false;
 			}
 		} 
 	}
